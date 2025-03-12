@@ -8,7 +8,7 @@ const uint8_t tastaturlayout[4][3] = {
     {1, 2, 3},
     {4, 5, 6},
     {7, 8, 9},
-    {0xA, 0, 0xB}
+    {0xA, 0, 0xC}
 };
 
 /**
@@ -19,28 +19,26 @@ const uint8_t tastaturlayout[4][3] = {
  * Rückgabe: uint8_t - Tastenwert aus tastaturlayout oder 0xFF wenn keine Taste gedrückt
  */
 uint8_t scan_tastatur(void) {
-    for (uint8_t zeile = 0; zeile < 4; zeile++) {
-        // Alle Zeilen (PB0-PB3) auf HIGH setzen
-        PORTB = 0x0F;
+    for (uint8_t zeile = 0; zeile <= 3; zeile++) {
+		
+		// Alle Zeilen (PB0-PB3) auf HIGH setzen
+		PORTB = 0x0F;
 		
         // Aktuelle Zeile auf LOW setzen
         PORTB &= ~(1 << zeile);
-        _delay_us(1);   
+        //_delay_us(1);   
 		  
         // Spaltenstatus lesen (PD2-PD4)
-        uint8_t spalten = PIND & 0x1C;
-        for (uint8_t spalte = 0; spalte < 3; spalte++) {
+        for (uint8_t spalte = 0; spalte <= 2; spalte++) {
 			
             // Spalten sind PD2-PD4
             uint8_t pin_spalte = spalte + 2;   
 			  
-            // Wenn Spalte LOW ist (Taste gedrückt)
-            if (!(spalten & (1 << pin_spalte))) {			
-                if (!(PIND & (1 << pin_spalte))) {
+            // Wenn Spalte LOW ist (Taste gedrückt)		
+            if (!(PIND & (1 << pin_spalte))) {
 					
-                    // Tastenwert zurückgeben
-                    return tastaturlayout[zeile][spalte];
-                }
+                // Tastenwert zurückgeben
+                return tastaturlayout[zeile][spalte];
             }
         }
     }
@@ -57,15 +55,13 @@ uint8_t scan_tastatur(void) {
  * Rückgabe: keine
  */
 void display(uint8_t wert) {
-    // Untere 4 Bits von wert auf PC0-PC3 setzen, obere Bits von PORTC unverändert lassen
-    PORTC = (PORTC & 0xF0) | (wert & 0x0F);
+    PORTC = wert;
 }
 
 /**
  * Hauptprogramm
  */
 int main(void) {
-    // Port-Konfiguration
     // PB0-PB3 als Ausgänge (Zeilen)
     DDRB = 0x0F;
 	
@@ -75,14 +71,11 @@ int main(void) {
     // PD2-PD4 als Eingänge (Spalten)
     DDRD = 0x00;
 	
-    // Pull-ups für Spalten aktivieren
-    PORTD = 0xFF;
+    // Pull-ups für Spalten PD2-PD4 aktivieren
+    PORTD = 0x1C;
     
     // Aktueller Tastenwert
     uint8_t taste = 0xFF;
-	
-    // Letzter Tastenwert für Wiederholungserkennung
-    uint8_t temp = 0xFF;
     
     // Hauptschleife
     while (1) {
@@ -90,16 +83,10 @@ int main(void) {
         taste = scan_tastatur();
         
         // Wenn neue Taste gedrückt
-        if (taste != 0xFF && taste != temp) {
+        if (taste != 0xFF) {
 			
             // Wert auf LEDs anzeigen
             display(taste);
-			
-            // Tastenwert speichern
-            temp = taste;
-			
-            // Zurücksetzen für erneute Erkennung
-            temp = 0xFF;
         }
     }
     

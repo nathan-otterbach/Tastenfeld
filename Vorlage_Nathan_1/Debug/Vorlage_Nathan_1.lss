@@ -3,82 +3,82 @@ Vorlage_Nathan_1.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000001e4  2**0
+  0 .data         00000000  00800100  00800100  000001b4  2**0
                   ALLOC, LOAD, DATA
   1 .text         00000080  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      0000002f  00000000  00000000  000001e4  2**0
+  2 .comment      0000002f  00000000  00000000  000001b4  2**0
                   CONTENTS, READONLY
-  3 .stack.descriptors.hdr 0000000e  00000000  00000000  00000213  2**0
+  3 .stack.descriptors.hdr 0000000e  00000000  00000000  000001e3  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 00000030  00000000  00000000  00000221  2**0
+  4 .debug_aranges 00000030  00000000  00000000  000001f1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000a4a  00000000  00000000  00000251  2**0
+  5 .debug_info   0000096f  00000000  00000000  00000221  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000006e8  00000000  00000000  00000c9b  2**0
+  6 .debug_abbrev 0000067c  00000000  00000000  00000b90  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000002d4  00000000  00000000  00001383  2**0
+  7 .debug_line   00000264  00000000  00000000  0000120c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000044  00000000  00000000  00001658  2**2
+  8 .debug_frame  00000044  00000000  00000000  00001470  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000208  00000000  00000000  0000169c  2**0
+  9 .debug_str    00000208  00000000  00000000  000014b4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000000e7  00000000  00000000  000018a4  2**0
+ 10 .debug_loc    00000051  00000000  00000000  000016bc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000020  00000000  00000000  0000198b  2**0
+ 11 .debug_ranges 00000020  00000000  00000000  0000170d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .text         00000004  00000162  00000162  000001d6  2**1
+ 12 .text         00000004  0000012e  0000012e  000001a2  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 13 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000019ac  2**2
+ 13 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001730  2**2
                   CONTENTS, READONLY, DEBUGGING
- 14 .text.scan_tastatur 00000098  0000008c  0000008c  00000100  2**1
+ 14 .text.scan_tastatur 00000072  0000008c  0000008c  00000100  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 15 .text.display 0000000c  00000156  00000156  000001ca  2**1
+ 15 .text.display 00000004  00000132  00000132  000001a6  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 16 .text.main    0000001c  00000124  00000124  00000198  2**1
+ 16 .text.main    0000001a  000000fe  000000fe  00000172  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
  17 .progmemx.data.tastaturlayout 0000000c  00000080  00000080  000000f4  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, PROGMEMX
- 18 .text.__dummy_fini 00000002  0000016a  0000016a  000001de  2**1
+ 18 .text.__dummy_fini 00000002  0000013a  0000013a  000001ae  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 19 .text.__dummy_funcs_on_exit 00000002  0000016c  0000016c  000001e0  2**1
+ 19 .text.__dummy_funcs_on_exit 00000002  0000013c  0000013c  000001b0  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 20 .text.__dummy_simulator_exit 00000002  0000016e  0000016e  000001e2  2**1
+ 20 .text.__dummy_simulator_exit 00000002  0000013e  0000013e  000001b2  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 21 .text.exit    00000016  00000140  00000140  000001b4  2**1
+ 21 .text.exit    00000016  00000118  00000118  0000018c  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 22 .text._Exit   00000004  00000166  00000166  000001da  2**1
+ 22 .text._Exit   00000004  00000136  00000136  000001aa  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
-   4:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-   8:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-   c:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  10:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  14:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  18:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  1c:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  20:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  24:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  28:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  2c:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  30:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  34:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  38:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  3c:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  40:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  44:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  48:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  4c:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  50:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  54:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  58:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  5c:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  60:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
-  64:	0c 94 b1 00 	jmp	0x162	; 0x162 <__bad_interrupt>
+   4:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+   8:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+   c:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  10:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  14:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  18:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  1c:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  20:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  24:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  28:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  2c:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  30:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  34:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  38:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  3c:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  40:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  44:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  48:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  4c:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  50:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  54:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  58:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  5c:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  60:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
+  64:	0c 94 97 00 	jmp	0x12e	; 0x12e <__bad_interrupt>
 
 00000068 <__ctors_end>:
   68:	11 24       	eor	r1, r1
@@ -87,8 +87,8 @@ Disassembly of section .text:
   6e:	d8 e0       	ldi	r29, 0x08	; 8
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
-  74:	0e 94 92 00 	call	0x124	; 0x124 <main>
-  78:	0c 94 a0 00 	jmp	0x140	; 0x140 <exit>
+  74:	0e 94 7f 00 	call	0xfe	; 0xfe <main>
+  78:	0c 94 8c 00 	jmp	0x118	; 0x118 <exit>
 
 0000007c <_exit>:
   7c:	f8 94       	cli
@@ -98,8 +98,8 @@ Disassembly of section .text:
 
 Disassembly of section .text:
 
-00000162 <__bad_interrupt>:
- 162:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
+0000012e <__bad_interrupt>:
+ 12e:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
 
 Disassembly of section .text.scan_tastatur:
 
@@ -109,22 +109,23 @@ Disassembly of section .text.scan_tastatur:
  * Rückgabe: uint8_t - Tastenwert aus tastaturlayout oder 0xFF wenn keine Taste gedrückt
  */
 uint8_t scan_tastatur(void) {
-    for (uint8_t zeile = 0; zeile < 4; zeile++) {
-  8c:	50 e0       	ldi	r21, 0x00	; 0
-  8e:	45 c0       	rjmp	.+138    	; 0x11a <scan_tastatur+0x8e>
-        // Alle Zeilen (PB0-PB3) auf HIGH setzen
-        PORTB = 0x0F;
+    for (uint8_t zeile = 0; zeile <= 3; zeile++) {
+  8c:	40 e0       	ldi	r20, 0x00	; 0
+  8e:	33 c0       	rjmp	.+102    	; 0xf6 <scan_tastatur+0x6a>
+		
+		// Alle Zeilen (PB0-PB3) auf HIGH setzen
+		PORTB = 0x0F;
   90:	8f e0       	ldi	r24, 0x0F	; 15
   92:	85 b9       	out	0x05, r24	; 5
 		
         // Aktuelle Zeile auf LOW setzen
         PORTB &= ~(1 << zeile);
   94:	25 b1       	in	r18, 0x05	; 5
-  96:	65 2f       	mov	r22, r21
+  96:	64 2f       	mov	r22, r20
   98:	70 e0       	ldi	r23, 0x00	; 0
   9a:	81 e0       	ldi	r24, 0x01	; 1
   9c:	90 e0       	ldi	r25, 0x00	; 0
-  9e:	05 2e       	mov	r0, r21
+  9e:	04 2e       	mov	r0, r20
   a0:	02 c0       	rjmp	.+4      	; 0xa6 <scan_tastatur+0x1a>
   a2:	88 0f       	add	r24, r24
   a4:	99 1f       	adc	r25, r25
@@ -133,191 +134,159 @@ uint8_t scan_tastatur(void) {
   aa:	80 95       	com	r24
   ac:	82 23       	and	r24, r18
   ae:	85 b9       	out	0x05, r24	; 5
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
-  b0:	26 e0       	ldi	r18, 0x06	; 6
-  b2:	2a 95       	dec	r18
-  b4:	f1 f7       	brne	.-4      	; 0xb2 <scan_tastatur+0x26>
-  b6:	00 c0       	rjmp	.+0      	; 0xb8 <scan_tastatur+0x2c>
-        _delay_us(1);   
+        //_delay_us(1);   
 		  
         // Spaltenstatus lesen (PD2-PD4)
-        uint8_t spalten = PIND & 0x1C;
-  b8:	49 b1       	in	r20, 0x09	; 9
-  ba:	4c 71       	andi	r20, 0x1C	; 28
-        for (uint8_t spalte = 0; spalte < 3; spalte++) {
-  bc:	80 e0       	ldi	r24, 0x00	; 0
-  be:	2a c0       	rjmp	.+84     	; 0x114 <scan_tastatur+0x88>
+        for (uint8_t spalte = 0; spalte <= 2; spalte++) {
+  b0:	20 e0       	ldi	r18, 0x00	; 0
+  b2:	1e c0       	rjmp	.+60     	; 0xf0 <scan_tastatur+0x64>
 			
             // Spalten sind PD2-PD4
             uint8_t pin_spalte = spalte + 2;   
-  c0:	92 e0       	ldi	r25, 0x02	; 2
-  c2:	98 0f       	add	r25, r24
 			  
-            // Wenn Spalte LOW ist (Taste gedrückt)
-            if (!(spalten & (1 << pin_spalte))) {			
-  c4:	24 2f       	mov	r18, r20
-  c6:	30 e0       	ldi	r19, 0x00	; 0
-  c8:	09 2e       	mov	r0, r25
-  ca:	02 c0       	rjmp	.+4      	; 0xd0 <scan_tastatur+0x44>
-  cc:	35 95       	asr	r19
-  ce:	27 95       	ror	r18
-  d0:	0a 94       	dec	r0
-  d2:	e2 f7       	brpl	.-8      	; 0xcc <scan_tastatur+0x40>
-  d4:	20 fd       	sbrc	r18, 0
-  d6:	1d c0       	rjmp	.+58     	; 0x112 <scan_tastatur+0x86>
-                if (!(PIND & (1 << pin_spalte))) {
-  d8:	29 b1       	in	r18, 0x09	; 9
-  da:	30 e0       	ldi	r19, 0x00	; 0
-  dc:	02 c0       	rjmp	.+4      	; 0xe2 <scan_tastatur+0x56>
-  de:	35 95       	asr	r19
-  e0:	27 95       	ror	r18
-  e2:	9a 95       	dec	r25
-  e4:	e2 f7       	brpl	.-8      	; 0xde <scan_tastatur+0x52>
-  e6:	20 fd       	sbrc	r18, 0
-  e8:	14 c0       	rjmp	.+40     	; 0x112 <scan_tastatur+0x86>
+            // Wenn Spalte LOW ist (Taste gedrückt)		
+            if (!(PIND & (1 << pin_spalte))) {
+  b4:	89 b1       	in	r24, 0x09	; 9
+  b6:	90 e0       	ldi	r25, 0x00	; 0
+  b8:	32 e0       	ldi	r19, 0x02	; 2
+  ba:	32 0f       	add	r19, r18
+  bc:	02 c0       	rjmp	.+4      	; 0xc2 <scan_tastatur+0x36>
+  be:	95 95       	asr	r25
+  c0:	87 95       	ror	r24
+  c2:	3a 95       	dec	r19
+  c4:	e2 f7       	brpl	.-8      	; 0xbe <scan_tastatur+0x32>
+  c6:	80 fd       	sbrc	r24, 0
+  c8:	12 c0       	rjmp	.+36     	; 0xee <scan_tastatur+0x62>
 					
-                    // Tastenwert zurückgeben
-                    return tastaturlayout[zeile][spalte];
-  ea:	9b 01       	movw	r18, r22
-  ec:	22 0f       	add	r18, r18
-  ee:	33 1f       	adc	r19, r19
-  f0:	62 0f       	add	r22, r18
-  f2:	73 1f       	adc	r23, r19
-  f4:	9b 01       	movw	r18, r22
-  f6:	28 0f       	add	r18, r24
-  f8:	31 1d       	adc	r19, r1
-  fa:	c9 01       	movw	r24, r18
-  fc:	09 2e       	mov	r0, r25
-  fe:	00 0c       	add	r0, r0
- 100:	aa 0b       	sbc	r26, r26
- 102:	80 58       	subi	r24, 0x80	; 128
- 104:	9f 4f       	sbci	r25, 0xFF	; 255
- 106:	af 4f       	sbci	r26, 0xFF	; 255
- 108:	fc 01       	movw	r30, r24
- 10a:	84 91       	lpm	r24, Z
- 10c:	a7 fd       	sbrc	r26, 7
- 10e:	80 81       	ld	r24, Z
- 110:	08 95       	ret
+                // Tastenwert zurückgeben
+                return tastaturlayout[zeile][spalte];
+  ca:	cb 01       	movw	r24, r22
+  cc:	88 0f       	add	r24, r24
+  ce:	99 1f       	adc	r25, r25
+  d0:	86 0f       	add	r24, r22
+  d2:	97 1f       	adc	r25, r23
+  d4:	82 0f       	add	r24, r18
+  d6:	91 1d       	adc	r25, r1
+  d8:	09 2e       	mov	r0, r25
+  da:	00 0c       	add	r0, r0
+  dc:	aa 0b       	sbc	r26, r26
+  de:	80 58       	subi	r24, 0x80	; 128
+  e0:	9f 4f       	sbci	r25, 0xFF	; 255
+  e2:	af 4f       	sbci	r26, 0xFF	; 255
+  e4:	fc 01       	movw	r30, r24
+  e6:	84 91       	lpm	r24, Z
+  e8:	a7 fd       	sbrc	r26, 7
+  ea:	80 81       	ld	r24, Z
+  ec:	08 95       	ret
+        // Aktuelle Zeile auf LOW setzen
         PORTB &= ~(1 << zeile);
-        _delay_us(1);   
+        //_delay_us(1);   
 		  
         // Spaltenstatus lesen (PD2-PD4)
-        uint8_t spalten = PIND & 0x1C;
-        for (uint8_t spalte = 0; spalte < 3; spalte++) {
- 112:	8f 5f       	subi	r24, 0xFF	; 255
- 114:	83 30       	cpi	r24, 0x03	; 3
- 116:	a0 f2       	brcs	.-88     	; 0xc0 <scan_tastatur+0x34>
+        for (uint8_t spalte = 0; spalte <= 2; spalte++) {
+  ee:	2f 5f       	subi	r18, 0xFF	; 255
+  f0:	23 30       	cpi	r18, 0x03	; 3
+  f2:	00 f3       	brcs	.-64     	; 0xb4 <scan_tastatur+0x28>
  * Funktion: Durchläuft alle Zeilen/Spalten und erkennt gedrückte Tasten
  * Parameter: keine
  * Rückgabe: uint8_t - Tastenwert aus tastaturlayout oder 0xFF wenn keine Taste gedrückt
  */
 uint8_t scan_tastatur(void) {
-    for (uint8_t zeile = 0; zeile < 4; zeile++) {
- 118:	5f 5f       	subi	r21, 0xFF	; 255
- 11a:	54 30       	cpi	r21, 0x04	; 4
- 11c:	08 f4       	brcc	.+2      	; 0x120 <scan_tastatur+0x94>
- 11e:	b8 cf       	rjmp	.-144    	; 0x90 <scan_tastatur+0x4>
+    for (uint8_t zeile = 0; zeile <= 3; zeile++) {
+  f4:	4f 5f       	subi	r20, 0xFF	; 255
+  f6:	44 30       	cpi	r20, 0x04	; 4
+  f8:	58 f2       	brcs	.-106    	; 0x90 <scan_tastatur+0x4>
             }
         }
     }
     
     // Keine Taste gedrückt
     return 0xFF;
- 120:	8f ef       	ldi	r24, 0xFF	; 255
+  fa:	8f ef       	ldi	r24, 0xFF	; 255
 }
- 122:	08 95       	ret
+  fc:	08 95       	ret
 
 Disassembly of section .text.display:
 
-00000156 <display>:
+00000132 <display>:
+ * Funktion: Stellt die unteren 4 Bits des Werts auf PC0-PC3 dar
  * Parameter: uint8_t wert - Anzuzeigender Wert
  * Rückgabe: keine
  */
 void display(uint8_t wert) {
-    // Untere 4 Bits von wert auf PC0-PC3 setzen, obere Bits von PORTC unverändert lassen
-    PORTC = (PORTC & 0xF0) | (wert & 0x0F);
- 156:	98 b1       	in	r25, 0x08	; 8
- 158:	90 7f       	andi	r25, 0xF0	; 240
- 15a:	8f 70       	andi	r24, 0x0F	; 15
- 15c:	89 2b       	or	r24, r25
- 15e:	88 b9       	out	0x08, r24	; 8
- 160:	08 95       	ret
+    PORTC = wert;
+ 132:	88 b9       	out	0x08, r24	; 8
+ 134:	08 95       	ret
 
 Disassembly of section .text.main:
 
-00000124 <main>:
+000000fe <main>:
+/**
  * Hauptprogramm
  */
 int main(void) {
-    // Port-Konfiguration
     // PB0-PB3 als Ausgänge (Zeilen)
     DDRB = 0x0F;
- 124:	8f e0       	ldi	r24, 0x0F	; 15
- 126:	84 b9       	out	0x04, r24	; 4
+  fe:	8f e0       	ldi	r24, 0x0F	; 15
+ 100:	84 b9       	out	0x04, r24	; 4
 	
     // PC0-PC3 als Ausgänge (LEDs)
     DDRC = 0x0F;
- 128:	87 b9       	out	0x07, r24	; 7
+ 102:	87 b9       	out	0x07, r24	; 7
     
     // PD2-PD4 als Eingänge (Spalten)
     DDRD = 0x00;
- 12a:	1a b8       	out	0x0a, r1	; 10
+ 104:	1a b8       	out	0x0a, r1	; 10
 	
-    // Pull-ups für Spalten aktivieren
-    PORTD = 0xFF;
- 12c:	8f ef       	ldi	r24, 0xFF	; 255
- 12e:	8b b9       	out	0x0b, r24	; 11
-    uint8_t temp = 0xFF;
+    // Pull-ups für Spalten PD2-PD4 aktivieren
+    PORTD = 0x1C;
+ 106:	8c e1       	ldi	r24, 0x1C	; 28
+ 108:	8b b9       	out	0x0b, r24	; 11
+    uint8_t taste = 0xFF;
     
     // Hauptschleife
     while (1) {
         // Keypad scannen
         taste = scan_tastatur();
- 130:	0e 94 46 00 	call	0x8c	; 0x8c <scan_tastatur>
+ 10a:	0e 94 46 00 	call	0x8c	; 0x8c <scan_tastatur>
         
         // Wenn neue Taste gedrückt
-        if (taste != 0xFF && taste != temp) {
- 134:	8f 3f       	cpi	r24, 0xFF	; 255
- 136:	e1 f3       	breq	.-8      	; 0x130 <main+0xc>
- 138:	d9 f3       	breq	.-10     	; 0x130 <main+0xc>
+        if (taste != 0xFF) {
+ 10e:	8f 3f       	cpi	r24, 0xFF	; 255
+ 110:	e1 f3       	breq	.-8      	; 0x10a <main+0xc>
 			
             // Wert auf LEDs anzeigen
             display(taste);
- 13a:	0e 94 ab 00 	call	0x156	; 0x156 <display>
- 13e:	f8 cf       	rjmp	.-16     	; 0x130 <main+0xc>
+ 112:	0e 94 99 00 	call	0x132	; 0x132 <display>
+ 116:	f9 cf       	rjmp	.-14     	; 0x10a <main+0xc>
 
 Disassembly of section .text.__dummy_fini:
 
-0000016a <_fini>:
- 16a:	08 95       	ret
+0000013a <_fini>:
+ 13a:	08 95       	ret
 
 Disassembly of section .text.__dummy_funcs_on_exit:
 
-0000016c <__funcs_on_exit>:
- 16c:	08 95       	ret
+0000013c <__funcs_on_exit>:
+ 13c:	08 95       	ret
 
 Disassembly of section .text.__dummy_simulator_exit:
 
-0000016e <__simulator_exit>:
- 16e:	08 95       	ret
+0000013e <__simulator_exit>:
+ 13e:	08 95       	ret
 
 Disassembly of section .text.exit:
 
-00000140 <exit>:
- 140:	ec 01       	movw	r28, r24
- 142:	0e 94 b6 00 	call	0x16c	; 0x16c <__funcs_on_exit>
- 146:	0e 94 b5 00 	call	0x16a	; 0x16a <_fini>
- 14a:	ce 01       	movw	r24, r28
- 14c:	0e 94 b7 00 	call	0x16e	; 0x16e <__simulator_exit>
- 150:	ce 01       	movw	r24, r28
- 152:	0e 94 b3 00 	call	0x166	; 0x166 <_Exit>
+00000118 <exit>:
+ 118:	ec 01       	movw	r28, r24
+ 11a:	0e 94 9e 00 	call	0x13c	; 0x13c <__funcs_on_exit>
+ 11e:	0e 94 9d 00 	call	0x13a	; 0x13a <_fini>
+ 122:	ce 01       	movw	r24, r28
+ 124:	0e 94 9f 00 	call	0x13e	; 0x13e <__simulator_exit>
+ 128:	ce 01       	movw	r24, r28
+ 12a:	0e 94 9b 00 	call	0x136	; 0x136 <_Exit>
 
 Disassembly of section .text._Exit:
 
-00000166 <_Exit>:
- 166:	0e 94 3e 00 	call	0x7c	; 0x7c <_exit>
+00000136 <_Exit>:
+ 136:	0e 94 3e 00 	call	0x7c	; 0x7c <_exit>
