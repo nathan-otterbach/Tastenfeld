@@ -66,12 +66,10 @@ uint8_t scan_tastatur(void) {
 Die Funktion `scan_tastatur()` durchsucht die Matrix nach gedrückten Tasten:
 
 1. Durchläuft nacheinander alle vier Zeilen
-2. Setzt alle Zeilenpins auf HIGH mit dem Befehl `PORTB |= 0x0F;`
-3. Setzt nur die aktuelle Zeile auf LOW mit `PORTB &= ~(1 << row);`
+2. Setzt alle Zeilenpins auf HIGH mit dem Befehl `PORTB = 0x0F;`
+3. Setzt nur die aktuelle Zeile auf LOW mit `PORTB &= ~(1 << zeile);`
 4. Prüft, ob eine der Spalten auf LOW gezogen wurde, was einen Tastendruck anzeigt
 5. Bei erkanntem Tastendruck:
-   - Erneute Prüfung nach 10ms
-   - Warten auf Tastenloslassen
    - Rückgabe des entsprechenden Werts aus dem tastaturlayout
 
 ### 2.2 Anzeige-Funktion
@@ -156,7 +154,8 @@ Wenn die Taste 8 gedrückt wird, läuft folgender Prozess ab:
    - Die Funktion `scan_tastatur()` durchläuft die Zeilen 0-3
    - Bei Zeile 2 (3. Zeile):
      ```c
-     PORTB |= 0x0F;  // Alle Zeilen auf HIGH
+     // Alle Zeilen (PB0-PB3) auf HIGH setzen
+     PORTB = 0x0F;
      PORTB &= ~(1 << 2);  // Nur Zeile 3 (PB2) auf LOW
      ```
    - PB2 ist jetzt LOW, PB0, PB1 und PB3 sind HIGH
@@ -166,18 +165,13 @@ Wenn die Taste 8 gedrückt wird, läuft folgender Prozess ab:
    - Da PB2 LOW ist, wird auch PD3 auf LOW gezogen
    - Bei der Überprüfung:
      ```c
-     cols = PIND & 0x1C;  // Liest Spaltenzustand
+     spalten = PIND & 0x1C;  // Liest Spaltenzustand
      // Bei Spalte 2 (col=1, col_pin=3):
-     if (!(cols & (1 << 3))) {  // Prüft, ob PD3 LOW ist
+     if (!(spalten & (1 << 3))) {  // Prüft, ob PD3 LOW ist
      ```
    - Die Bedingung ist erfüllt, da PD3 jetzt LOW ist
 
-4. **Entprellung und Bestätigung**:
-   - Nach 10ms wird erneut geprüft, ob PD3 noch LOW ist
-   - Wenn ja, wartet die Funktion, bis die Taste losgelassen wird
-   - Danach gibt sie den Wert 8 zurück
-
-5. **Anzeige des Werts**:
+4. **Anzeige des Werts**:
    - In der Hauptschleife wird der neue Tastendruck erkannt
    - `display(8)` wird aufgerufen:
      ```c
@@ -193,5 +187,5 @@ Wenn die Taste 8 gedrückt wird, läuft folgender Prozess ab:
 
 6. **Vorbereitung für den nächsten Tastendruck**:
    - `temp` wird auf 8 gesetzt
-   - Nach 100ms wird `temp` auf 0xFF zurückgesetzt
+   - `temp` wird auf 0xFF zurückgesetzt
    - Die Taste 8 kann nun erneut erkannt werden, wenn sie losgelassen und wieder gedrückt wird
