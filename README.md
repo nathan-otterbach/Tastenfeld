@@ -32,11 +32,11 @@ const uint8_t tastaturlayout[4][3] = {
 
 ```c
 uint8_t scan_tastatur(void) {
-    for (uint8_t reihe = 0; reihe < 4; reihe++) {
+    for (uint8_t zeile = 0; zeile < 4; zeile++) {
         // Alle Zeilen (PB0-PB3) auf HIGH setzen
         PORTB = 0x0F;
         // Aktuelle Zeile auf LOW setzen
-        PORTB &= ~(1 << reihe);
+        PORTB &= ~(1 << zeile);
   
         _delay_us(5);
         
@@ -56,7 +56,7 @@ uint8_t scan_tastatur(void) {
                         _delay_ms(10);
                     }
                     // Tastenwert zurückgeben
-                    return tastaturlayout[reihe][spalte];
+                    return tastaturlayout[zeile][spalte];
                 }
             }
         }
