@@ -345,33 +345,33 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000      0xb18
+.debug_info     0x0000000000000000      0xa4a
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
- .debug_info    0x00000000000005f4      0x524 main.o
+ .debug_info    0x00000000000005f4      0x456 main.o
 
-.debug_abbrev   0x0000000000000000      0x720
+.debug_abbrev   0x0000000000000000      0x6e8
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
- .debug_abbrev  0x00000000000005a2      0x17e main.o
+ .debug_abbrev  0x00000000000005a2      0x146 main.o
 
-.debug_line     0x0000000000000000      0x2fb
+.debug_line     0x0000000000000000      0x2d4
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x137 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
- .debug_line    0x0000000000000137      0x1c4 main.o
+ .debug_line    0x0000000000000137      0x19d main.o
 
 .debug_frame    0x0000000000000000       0x44
  *(.debug_frame)
  .debug_frame   0x0000000000000000       0x44 main.o
 
-.debug_str      0x0000000000000000      0x22e
+.debug_str      0x0000000000000000      0x208
  *(.debug_str)
  .debug_str     0x0000000000000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
- .debug_str     0x0000000000000208       0x26 main.o
+ .debug_str     0x0000000000000208        0x0 main.o
 
-.debug_loc      0x0000000000000000      0x1e2
+.debug_loc      0x0000000000000000       0xe7
  *(.debug_loc)
- .debug_loc     0x0000000000000000      0x1e2 main.o
+ .debug_loc     0x0000000000000000       0xe7 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -413,70 +413,70 @@ LOAD data_init
                 0x0000000000000080                tastaturlayout
 
 .text.scan_tastatur
-                0x000000000000008c       0xca
+                0x000000000000008c       0x98
  .text.scan_tastatur
-                0x000000000000008c       0xca main.o
+                0x000000000000008c       0x98 main.o
                 0x000000000000008c                scan_tastatur
 
-.text.main      0x0000000000000156       0x34
- .text.main     0x0000000000000156       0x34 main.o
-                0x0000000000000156                main
+.text.main      0x0000000000000124       0x1c
+ .text.main     0x0000000000000124       0x1c main.o
+                0x0000000000000124                main
 
-.text.exit      0x000000000000018a       0x16
- .text.exit     0x000000000000018a       0x16 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
-                0x000000000000018a                exit
+.text.exit      0x0000000000000140       0x16
+ .text.exit     0x0000000000000140       0x16 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
+                0x0000000000000140                exit
 
-.text.display   0x00000000000001a0        0xc
- .text.display  0x00000000000001a0        0xc main.o
-                0x00000000000001a0                display
+.text.display   0x0000000000000156        0xc
+ .text.display  0x0000000000000156        0xc main.o
+                0x0000000000000156                display
 
-.text           0x00000000000001ac        0x4
- .text          0x00000000000001ac        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
-                0x00000000000001ac                __vector_22
-                0x00000000000001ac                __vector_1
-                0x00000000000001ac                __vector_24
-                0x00000000000001ac                __vector_12
-                0x00000000000001ac                __bad_interrupt
-                0x00000000000001ac                __vector_6
-                0x00000000000001ac                __vector_3
-                0x00000000000001ac                __vector_23
-                0x00000000000001ac                __vector_25
-                0x00000000000001ac                __vector_11
-                0x00000000000001ac                __vector_13
-                0x00000000000001ac                __vector_17
-                0x00000000000001ac                __vector_19
-                0x00000000000001ac                __vector_7
-                0x00000000000001ac                __vector_5
-                0x00000000000001ac                __vector_4
-                0x00000000000001ac                __vector_9
-                0x00000000000001ac                __vector_2
-                0x00000000000001ac                __vector_21
-                0x00000000000001ac                __vector_15
-                0x00000000000001ac                __vector_8
-                0x00000000000001ac                __vector_14
-                0x00000000000001ac                __vector_10
-                0x00000000000001ac                __vector_16
-                0x00000000000001ac                __vector_18
-                0x00000000000001ac                __vector_20
+.text           0x0000000000000162        0x4
+ .text          0x0000000000000162        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega328p.o
+                0x0000000000000162                __vector_22
+                0x0000000000000162                __vector_1
+                0x0000000000000162                __vector_24
+                0x0000000000000162                __vector_12
+                0x0000000000000162                __bad_interrupt
+                0x0000000000000162                __vector_6
+                0x0000000000000162                __vector_3
+                0x0000000000000162                __vector_23
+                0x0000000000000162                __vector_25
+                0x0000000000000162                __vector_11
+                0x0000000000000162                __vector_13
+                0x0000000000000162                __vector_17
+                0x0000000000000162                __vector_19
+                0x0000000000000162                __vector_7
+                0x0000000000000162                __vector_5
+                0x0000000000000162                __vector_4
+                0x0000000000000162                __vector_9
+                0x0000000000000162                __vector_2
+                0x0000000000000162                __vector_21
+                0x0000000000000162                __vector_15
+                0x0000000000000162                __vector_8
+                0x0000000000000162                __vector_14
+                0x0000000000000162                __vector_10
+                0x0000000000000162                __vector_16
+                0x0000000000000162                __vector_18
+                0x0000000000000162                __vector_20
 
-.text._Exit     0x00000000000001b0        0x4
- .text._Exit    0x00000000000001b0        0x4 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(_Exit.o)
-                0x00000000000001b0                _Exit
+.text._Exit     0x0000000000000166        0x4
+ .text._Exit    0x0000000000000166        0x4 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(_Exit.o)
+                0x0000000000000166                _Exit
 
 .text.__dummy_fini
-                0x00000000000001b4        0x2
+                0x000000000000016a        0x2
  .text.__dummy_fini
-                0x00000000000001b4        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
-                0x00000000000001b4                _fini
+                0x000000000000016a        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
+                0x000000000000016a                _fini
 
 .text.__dummy_funcs_on_exit
-                0x00000000000001b6        0x2
+                0x000000000000016c        0x2
  .text.__dummy_funcs_on_exit
-                0x00000000000001b6        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
-                0x00000000000001b6                __funcs_on_exit
+                0x000000000000016c        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
+                0x000000000000016c                __funcs_on_exit
 
 .text.__dummy_simulator_exit
-                0x00000000000001b8        0x2
+                0x000000000000016e        0x2
  .text.__dummy_simulator_exit
-                0x00000000000001b8        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
-                0x00000000000001b8                __simulator_exit
+                0x000000000000016e        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
+                0x000000000000016e                __simulator_exit
