@@ -156,7 +156,9 @@ Wenn die Taste 8 gedrückt wird, läuft folgender Prozess ab:
      ```c
      // Alle Zeilen (PB0-PB3) auf HIGH setzen
      PORTB = 0x0F;
-     PORTB &= ~(1 << 2);  // Nur Zeile 3 (PB2) auf LOW
+
+     // Nur Zeile 3 (PB2) auf LOW
+     PORTB &= ~(1 << 2);
      ```
    - PB2 ist jetzt LOW, PB0, PB1 und PB3 sind HIGH
 
@@ -165,9 +167,11 @@ Wenn die Taste 8 gedrückt wird, läuft folgender Prozess ab:
    - Da PB2 LOW ist, wird auch PD3 auf LOW gezogen
    - Bei der Überprüfung:
      ```c
-     spalten = PIND & 0x1C;  // Liest Spaltenzustand
+     // Liest Spaltenzustand
+     spalten = PIND & 0x1C;
+     
      // Bei Spalte 2 (col=1, col_pin=3):
-     if (!(spalten & (1 << 3))) {  // Prüft, ob PD3 LOW ist
+     if (!(spalten & (1 << 3))) {
      ```
    - Die Bedingung ist erfüllt, da PD3 jetzt LOW ist
 
