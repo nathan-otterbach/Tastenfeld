@@ -188,11 +188,16 @@ Wenn die Taste 8 gedrückt wird, läuft folgender Prozess ab:
    - Da PB2 LOW ist, wird auch PD3 auf LOW gezogen
    - Bei der Überprüfung:
      ```c
-     // Liest Spaltenzustand
-     spalten = PIND & 0x1C;
-     
-     // Bei Spalte 2 (col=1, col_pin=3):
-     if (!(spalten & (1 << 3))) {
+        // Durchlaufe alle drei Spalten (PD2–PD4)
+        for (uint8_t spalte = 0; spalte < 3; spalte++) {
+            uint8_t pin_spalte = 1 + 2;
+
+            // Wenn eine Taste gedrückt ist (Spaltenpin auf LOW)
+            if (!(PIND & (1 << 3))) {
+                // Gib den Wert aus dem Layout zurück
+                return tastaturlayout[2][1];
+            }
+        }
      ```
    - Die Bedingung ist erfüllt, da PD3 jetzt LOW ist
 
@@ -200,7 +205,8 @@ Wenn die Taste 8 gedrückt wird, läuft folgender Prozess ab:
    - In der Hauptschleife wird der neue Tastendruck erkannt
    - `display(8)` wird aufgerufen:
      ```c
-     PORTC = (PORTC & 0xF0) | (8 & 0x0F);
+     // Nur PC0–PC3 sind als Ausgänge gesetzt; höherwertige Bits werden ignoriert
+     PORTC = wert;
      ```
    - 8 in Binär ist `1000`
    - Die LEDs werden entsprechend gesetzt:
