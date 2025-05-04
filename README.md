@@ -11,17 +11,20 @@ Das Programm steuert eine 4x3-Tastenmatrix und zeigt die gedrückten Werte auf e
 ## 2. Code-Analyse
 
 ```c
-// CPU-Taktfrequenz für delay-Funktionen
+// Definition der CPU-Taktfrequenz für delay-Funktionen (20 MHz)
 #define F_CPU 20000000UL  
+
+// Einbindung von AVR-spezifischen Header-Dateien
 #include <avr/io.h>
 #include <util/delay.h>
 
-// Tastenwerte für 4x3 Matrix
+// Definition der Tastenbelegung eines 4x3-Keypads (Zeilen x Spalten)
+// 0xA = Taste '*', 0xC = Taste '#', 0 wird in der Mitte unten angenommen
 const uint8_t tastaturlayout[4][3] = {
     {1, 2, 3},
     {4, 5, 6},
     {7, 8, 9},
-    {0xA, 0, 0xB}
+    {0xA, 0, 0xC}
 };
 ```
 
@@ -31,34 +34,43 @@ const uint8_t tastaturlayout[4][3] = {
 ### 2.1 Tastatur-Scan-Funktion
 
 ```c
+/**
+ * Tastaturmatrix scannen
+ * 
+ * Diese Funktion überprüft nacheinander jede Zeile des Keypads, indem sie 
+ * jeweils eine Zeile auf LOW setzt (aktive Zeile) und die anderen auf HIGH.
+ * Anschließend wird geprüft, ob in einer der drei Spalten ein LOW-Pegel 
+ * anliegt, was auf eine gedrückte Taste hinweist.
+ * 
+ * Rückgabe:
+ *  - Der erkannte Tastenwert laut `tastaturlayout`
+ *  - 0xFF, falls keine Taste gedrückt ist
+ */
 uint8_t scan_tastatur(void) {
     for (uint8_t zeile = 0; zeile < 4; zeile++) {
-        // Alle Zeilen (PB0-PB3) auf HIGH setzen
-        PORTB = 0x0F;
 		
-        // Aktuelle Zeile auf LOW setzen
+        // Setze alle Zeilen-Pins (PB0–PB3) auf HIGH (inaktiv)
+        PORTB = 0x0F;
+
+        // Aktive Zeile auf LOW setzen, um diese zu "selektieren"
         PORTB &= ~(1 << zeile);
-        _delay_us(1);   
-		  
-        // Spaltenstatus lesen (PD2-PD4)
-        uint8_t spalten = PIND & 0x1C;
+
+        // Kurze Verzögerung kann nötig sein (auskommentiert)
+        //_delay_us(1); 
+		
+        // Durchlaufe alle drei Spalten (PD2–PD4)
         for (uint8_t spalte = 0; spalte < 3; spalte++) {
-			
-            // Spalten sind PD2-PD4
-            uint8_t pin_spalte = spalte + 2;   
-			  
-            // Wenn Spalte LOW ist (Taste gedrückt)
-            if (!(spalten & (1 << pin_spalte))) {			
-                if (!(PIND & (1 << pin_spalte))) {
-					
-                    // Tastenwert zurückgeben
-                    return tastaturlayout[zeile][spalte];
-                }
+            uint8_t pin_spalte = spalte + 2;
+
+            // Wenn eine Taste gedrückt ist (Spaltenpin auf LOW)
+            if (!(PIND & (1 << pin_spalte))) {
+                // Gib den Wert aus dem Layout zurück
+                return tastaturlayout[zeile][spalte];
             }
         }
     }
-    
-    // Keine Taste gedrückt
+
+    // Keine Taste erkannt
     return 0xFF;
 }
 ```
@@ -75,9 +87,18 @@ Die Funktion `scan_tastatur()` durchsucht die Matrix nach gedrückten Tasten:
 ### 2.2 Anzeige-Funktion
 
 ```c
+/**
+ * Anzeige auf LED-Ausgängen
+ * 
+ * Gibt die unteren 4 Bits eines Wertes auf Port C aus (PC0–PC3).
+ * Dadurch lassen sich z.B. gedrückte Tasten binär auf LEDs darstellen.
+ *
+ * Parameter:
+ *  - wert: Ein 8-Bit-Wert, von dem die unteren 4 Bits dargestellt werden
+ */
 void display(uint8_t wert) {
-    // Untere 4 Bits von wert auf PC0-PC3 setzen, obere Bits von PORTC unverändert lassen
-    PORTC = (PORTC & 0xF0) | (wert & 0x0F);
+    // Nur PC0–PC3 sind als Ausgänge gesetzt; höherwertige Bits werden ignoriert
+    PORTC = wert;
 }
 ```
 
@@ -89,45 +110,45 @@ Die Funktion `display_()` zeigt einen Wert auf den LEDs an:
 ### 2.3 Hauptprogramm
 
 ```c
+/**
+ * Hauptfunktion
+ * 
+ * Initialisiert die I/O-Ports:
+ *  - PB0–PB3 (Zeilen) als Ausgang
+ *  - PD2–PD4 (Spalten) als Eingang mit Pull-up
+ *  - PC0–PC3 (LED-Ausgabe) als Ausgang
+ * 
+ * In der Hauptschleife wird die Tastatur kontinuierlich gescannt.
+ * Wird eine Taste erkannt, so wird ihr Wert auf den LEDs dargestellt.
+ */
 int main(void) {
-    // Port-Konfiguration
-    // PB0-PB3 als Ausgänge (Zeilen)
+    // Initialisiere Port B: PB0–PB3 als Ausgang für Zeilenansteuerung
     DDRB = 0x0F;
-	
-    // PC0-PC3 als Ausgänge (LEDs)
+
+    // Initialisiere Port C: PC0–PC3 als Ausgang für LED-Anzeige
     DDRC = 0x0F;
-    
-    // PD2-PD4 als Eingänge (Spalten)
-    DDRD = 0x00;
-	
-    // Pull-ups für Spalten aktivieren
-    PORTD = 0xFF;
-    
-    // Aktueller Tastenwert
+
+    // Initialisiere Port D: PD2–PD4 als Eingang für Spaltenabfrage
+    DDRD &= ~0x1C;
+
+    // Aktiviere interne Pull-up-Widerstände an den Spalteneingängen
+    PORTD |= 0x1C;
+
+    // Variable zum Speichern des aktuellen Tastencodes
     uint8_t taste = 0xFF;
-	
-    // Letzter Tastenwert für Wiederholungserkennung
-    uint8_t temp = 0xFF;
-    
-    // Hauptschleife
+
+    // Endlosschleife
     while (1) {
-        // Keypad scannen
+        // Scanne Tastatur
         taste = scan_tastatur();
-        
-        // Wenn neue Taste gedrückt
-        if (taste != 0xFF && taste != temp) {
-			
-            // Wert auf LEDs anzeigen
+
+        // Wenn eine Taste erkannt wurde
+        if (taste != 0xFF) {
+            // Gib den Tastenwert auf den LEDs aus
             display(taste);
-			
-            // Tastenwert speichern
-            temp = taste;
-			
-            // Zurücksetzen für erneute Erkennung
-            temp = 0xFF;
         }
     }
-    
+
     return 0;
 }
 ```
@@ -154,10 +175,10 @@ Wenn die Taste 8 gedrückt wird, läuft folgender Prozess ab:
    - Die Funktion `scan_tastatur()` durchläuft die Zeilen 0-3
    - Bei Zeile 2 (3. Zeile):
      ```c
-     // Alle Zeilen (PB0-PB3) auf HIGH setzen
+     // Setze alle Zeilen-Pins (PB0–PB3) auf HIGH (inaktiv)
      PORTB = 0x0F;
 
-     // Nur Zeile 3 (PB2) auf LOW
+     // Aktive Zeile auf LOW setzen, um diese zu "selektieren"
      PORTB &= ~(1 << 2);
      ```
    - PB2 ist jetzt LOW, PB0, PB1 und PB3 sind HIGH
