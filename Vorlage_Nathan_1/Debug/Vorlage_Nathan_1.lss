@@ -109,7 +109,7 @@ Disassembly of section .text.scan_tastatur:
  * Rückgabe: uint8_t - Tastenwert aus tastaturlayout oder 0xFF wenn keine Taste gedrückt
  */
 uint8_t scan_tastatur(void) {
-    for (uint8_t zeile = 0; zeile <= 3; zeile++) {
+    for (uint8_t zeile = 0; zeile < 4; zeile++) {
   8c:	40 e0       	ldi	r20, 0x00	; 0
   8e:	33 c0       	rjmp	.+102    	; 0xf6 <scan_tastatur+0x6a>
 		
@@ -137,7 +137,7 @@ uint8_t scan_tastatur(void) {
         //_delay_us(1);   
 		  
         // Spaltenstatus lesen (PD2-PD4)
-        for (uint8_t spalte = 0; spalte <= 2; spalte++) {
+        for (uint8_t spalte = 0; spalte < 3; spalte++) {
   b0:	20 e0       	ldi	r18, 0x00	; 0
   b2:	1e c0       	rjmp	.+60     	; 0xf0 <scan_tastatur+0x64>
 			
@@ -183,7 +183,7 @@ uint8_t scan_tastatur(void) {
         //_delay_us(1);   
 		  
         // Spaltenstatus lesen (PD2-PD4)
-        for (uint8_t spalte = 0; spalte <= 2; spalte++) {
+        for (uint8_t spalte = 0; spalte < 3; spalte++) {
   ee:	2f 5f       	subi	r18, 0xFF	; 255
   f0:	23 30       	cpi	r18, 0x03	; 3
   f2:	00 f3       	brcs	.-64     	; 0xb4 <scan_tastatur+0x28>
@@ -192,7 +192,7 @@ uint8_t scan_tastatur(void) {
  * Rückgabe: uint8_t - Tastenwert aus tastaturlayout oder 0xFF wenn keine Taste gedrückt
  */
 uint8_t scan_tastatur(void) {
-    for (uint8_t zeile = 0; zeile <= 3; zeile++) {
+    for (uint8_t zeile = 0; zeile < 4; zeile++) {
   f4:	4f 5f       	subi	r20, 0xFF	; 255
   f6:	44 30       	cpi	r20, 0x04	; 4
   f8:	58 f2       	brcs	.-106    	; 0x90 <scan_tastatur+0x4>

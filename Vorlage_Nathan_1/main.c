@@ -19,7 +19,7 @@ const uint8_t tastaturlayout[4][3] = {
  * Rückgabe: uint8_t - Tastenwert aus tastaturlayout oder 0xFF wenn keine Taste gedrückt
  */
 uint8_t scan_tastatur(void) {
-    for (uint8_t zeile = 0; zeile <= 3; zeile++) {
+    for (uint8_t zeile = 0; zeile < 4; zeile++) {
 		
 		// Alle Zeilen (PB0-PB3) auf HIGH setzen
 		PORTB = 0x0F;
@@ -29,7 +29,7 @@ uint8_t scan_tastatur(void) {
         //_delay_us(1);   
 		  
         // Spaltenstatus lesen (PD2-PD4)
-        for (uint8_t spalte = 0; spalte <= 2; spalte++) {
+        for (uint8_t spalte = 0; spalte < 3; spalte++) {
 			
             // Spalten sind PD2-PD4
             uint8_t pin_spalte = spalte + 2;   
