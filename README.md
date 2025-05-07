@@ -129,10 +129,10 @@ int main(void) {
     DDRC = 0x0F;
 
     // Initialisiere Port D: PD2–PD4 als Eingang für Spaltenabfrage
-    DDRD &= ~0x1C;
+	DDRD = 0x00;
 
     // Aktiviere interne Pull-up-Widerstände an den Spalteneingängen
-    PORTD |= 0x1C;
+    PORTD = 0x1C;
 
     // Variable zum Speichern des aktuellen Tastencodes
     uint8_t taste = 0xFF;
